@@ -39,26 +39,26 @@ class bst{
             root = NULL;
         }
         void insert(int v){
-            treenode*p = root,*c = root ;
+            treenode*storage = root,*trav = root ;
             treenode*n = new treenode(v);
             if(root==NULL){
                 root=n;
                 return;
             }
-            while(c!=NULL){
-                p = c;
-                if (v<c->value){
-                    c=c->lc;
+            while(trav!=NULL){
+                storage = trav;
+                if (v<trav->value){
+                    trav=trav->lc;
                     }
                 else {
-                    c=c->rc;
+                    trav=trav->rc;
                     }
                 }
-                if (v<p->value){
-                    p->lc = n;
+                if (v<storage->value){
+                    storage->lc = n;
                 }
                 else{
-                    p->rc = n;
+                    storage->rc = n;
                 }
             }
         
