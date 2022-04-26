@@ -1,4 +1,6 @@
 #include <iostream>
+#include <queue>
+#include <stack>
 using namespace std;
 
 class treenode{
@@ -35,9 +37,44 @@ class bst{
             cout<<r->value<<",";
         }
     public:
+        queue<treenode*>q;
+        stack<treenode*>s;
+        
         bst(){
             root = NULL;
         }
+        void remove(int v){
+            root = deletenode(root,v);
+        }
+        int minvalue(treenode*p){
+            while(p->lc!=NULL){
+                p = p->lc;
+            }
+            return p->value;
+
+        }
+        treenode* deletenode(treenode*p,int v){
+            if (p==NULL){return p;}
+            if (v<p->value){
+                p->lc = deletenode(p->lc,v);
+            }
+            else if (v>p->value){
+                p->rc = deletenode(p->rc,v);
+            }
+            else{
+                 if (p->lc == NULL){
+                return p->rc;
+            }
+                else if (p->rc == NULL){
+                return p->lc;
+            }
+                p->value = minvalue(p->rc);
+                p->rc = deletenode(p->rc,p->value);}
+                return p;
+            }
+
+            
+        
         void insert(int v){
             treenode*storage = root,*trav = root ;
             treenode*n = new treenode(v);
@@ -71,6 +108,38 @@ class bst{
          void displaypostorder(){
             displaypostorder(root);
         }
+        void levelwiseorder(){
+            treenode*p = root;
+            q.push(p);
+            while (!q.empty()){
+                p=q.front();
+                q.pop();
+                cout<<p->value<<",";
+                if (p->lc!=NULL){
+                    q.push(p->lc);
+                }
+                if(p->rc!=NULL){
+                    q.push(p->rc);
+                }
+            }
+        }
+        void inorder(){
+            treenode*p= root;
+            while(!s.empty()||p!=NULL){
+                if(p!=NULL){
+                    s.push(p);
+                    p =p->lc;
+                }
+                else{
+                    p = s.top();
+                    s.pop();
+                    cout<<p->value<<",";
+                    p = p->rc;}
+                }
+            }
+
+        
+
         
 
 };
@@ -80,17 +149,23 @@ int main(){
     b.insert(10);
     b.insert(20);
     b.insert(30);
-    b.insert(40);
+    b.insert(110);
     b.insert(50);
     b.insert(60);
     b.insert(70);
     b.insert(80);
     b.insert(90);
     b.insert(100);
+    b.remove(60);
     cout<<"\nDisplaying preorder traversal "<<endl;
     b.displaypreorder();
     cout<<"\nDisplaying postorder traversal "<<endl;
     b.displaypostorder();
     cout<<"\nDisplaying inorder traversal "<<endl;
     b.displayinorder();
+    cout<<"\n level wise display "<<endl;
+    b.levelwiseorder();
+    cout<<"\nDisplaying inorder traversal "<<endl;
+    b.inorder();
+
 }
