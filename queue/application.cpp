@@ -2,17 +2,38 @@
 #include "frontqueue.h"
 #include "varqueue.h"
 #include "circularqueue.h"
+#include "queuefromstack.h"
 using namespace std;
 
 int main(){
+    queue1 q;
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    
+    cout<<q.topval<<endl;
+    q.dequeue();
+    cout<<q.topval<<endl;
+    q.dequeue();
+    cout<<q.topval<<endl;
+    q.dequeue();
+    cout<<q.topval<<endl;
+    q.dequeue();
+    cout<<q.topval<<endl;
+    q.dequeue();
+    cout<<q.topval<<endl;
+    q.dequeue();
+}
     //varqueue f1;
-    frontqueue f1;
-    //circularqueue f1;
-    f1.enqueue(10);
-    f1.enqueue(20);
-    f1.enqueue(30);
-    f1.dequeue();
-    f1.display();
+    // frontqueue f1;
+    // //circularqueue f1;
+    // f1.enqueue(10);
+    // f1.enqueue(20);
+    // f1.enqueue(30);
+    // f1.dequeue();
+    // f1.display();
     //frontqueue f[10];
     // int d;
     // int arr[10] = {1,24,329,22,27,28,657,245,553,23}; 

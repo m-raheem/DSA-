@@ -33,6 +33,7 @@ class binarytree{
             displayino(2*x+2);
             
         }
+        
 
         void levelwise(){
             for (int i=0;i<n;i++){

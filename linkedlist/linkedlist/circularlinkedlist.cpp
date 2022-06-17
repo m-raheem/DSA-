@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 //LINKEDLIST SINGLY CIRCULAR GROUNDED
 
@@ -16,7 +17,9 @@ class node{
 class circlinkedlist{
         node*head;
     public:    
+         stack<int>s;
     circlinkedlist(){
+
         head = NULL;
     }
     void insert_at_head(int v){
@@ -80,19 +83,42 @@ class circlinkedlist{
     void display(){
         node* temp = head;
         do{
+            //s.push(temp->data);
             cout<<temp->data<<",";
             temp=temp->next;
         }while(temp!=head);
+        
+    }
+    void reverse(){
+        node* temp = head;
+        do{
+            s.push(temp->data);
+            remove(temp->data);
+            temp=temp->next;
+        }while(temp!=head);
+        do{
+            insert(s.top());
+            s.pop();
+        }while(!s.empty());
+
+
+        
         
     }
 };
 
 int main(){
     circlinkedlist c;
-    c.insert(12);
-    c.insert(13);
-    c.insert_at_head(11);
-    c.remove(11);
+    stack<int>s;
+    c.insert(9);
+    c.insert(7);
+    // c.insert_at_head(11);
+    // c.remove(11);
+    c.insert(4);
+    c.insert(2);
+    c.reverse();
     c.display();
+
+
 }
 

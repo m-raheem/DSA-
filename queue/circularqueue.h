@@ -41,4 +41,8 @@ class circularqueue{
                 j%=N;
             }
         }
+        int topelement(){
+            return A[front];
+
+        }
 };

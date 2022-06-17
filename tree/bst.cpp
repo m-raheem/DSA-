@@ -31,12 +31,19 @@ class bst{
             displayinorder(r->rc);
         }
         void displaypostorder(treenode* r){
-            if (r==NULL)return;
+            if (r->lc==NULL && r->rc==NULL){
+                counter++;
+                return;
+            }
             displaypostorder(r->lc);
             displaypostorder(r->rc);
             cout<<r->value<<",";
         }
     public:
+        int sum = 0;
+        int count = 0;
+        int Height = 0;
+        int counter = 0;
         queue<treenode*>q;
         stack<treenode*>s;
         
@@ -69,8 +76,10 @@ class bst{
                 return p->lc;
             }
                 p->value = minvalue(p->rc);
-                p->rc = deletenode(p->rc,p->value);}
-                return p;
+                p->rc = deletenode(p->rc,p->value);
+                
+                }
+            return p;
             }
 
             
@@ -108,6 +117,40 @@ class bst{
          void displaypostorder(){
             displaypostorder(root);
         }
+        void sumfunc(treenode* r){
+            if (r==NULL){
+                //count++;
+                return;}
+            
+            count++;
+            sum+=r->value;
+            sumfunc(r->lc);
+            sumfunc(r->rc);
+        }
+        void sumfunc(){
+            sumfunc(root);
+        }
+        void height(){
+            int j =1;
+            if (count%2==0){
+                while(j<=count){
+                    j*=2;
+                    Height++;
+                }
+            }
+            else{
+                count++;
+                while(j<=count){
+                    j*=2;
+                    Height++;
+                }
+
+            }
+        }
+
+
+        
+
         void levelwiseorder(){
             treenode*p = root;
             q.push(p);
@@ -146,17 +189,20 @@ class bst{
 
 int main(){
     bst b;
-    b.insert(10);
-    b.insert(20);
-    b.insert(30);
-    b.insert(110);
-    b.insert(50);
-    b.insert(60);
-    b.insert(70);
-    b.insert(80);
-    b.insert(90);
-    b.insert(100);
-    b.remove(60);
+    b.insert(1);
+    b.insert(2);
+    b.insert(3);
+    //b.insert(110);
+    b.insert(4);
+    b.insert(5);
+    // b.remove(6);
+    // b.remove(1);
+    // b.remove(2);
+    //b.insert(70);
+    //b.insert(80);
+    //b.insert(90);
+    //b.insert(100);
+    //b.remove(60);
     cout<<"\nDisplaying preorder traversal "<<endl;
     b.displaypreorder();
     cout<<"\nDisplaying postorder traversal "<<endl;
@@ -167,5 +213,29 @@ int main(){
     b.levelwiseorder();
     cout<<"\nDisplaying inorder traversal "<<endl;
     b.inorder();
+    b.sumfunc();
+    b.height();
+    cout<<"\nthe sum is "<<b.sum<<" of "<<b.count<<" nodes "<<b.Height<<" height "<<endl;
+    cout<<b.counter<<endl;
 
 }
+
+
+// void remove(){
+//             int min = s4.gettop();
+//             while(!s4.isempty()){
+//                 if ( s4.gettop()<min){
+//                     min = s4.gettop();
+//                 }
+//                 s1.push(s4.pop());
+//             }
+//             while(!s1.isempty()){
+//                 if (min!=s1.gettop()){
+//                     s4.push(s1.pop());
+//                 }
+//             }
+//             s4.push(min);
+//             s4.pop();
+            
+            
+//         }
