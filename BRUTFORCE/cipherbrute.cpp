@@ -27,6 +27,6 @@ void cipher_bruteforce(string s){
     }
 }
 int main(){
-    cipher_bruteforce("TRVJRI TZGYVIJ RIV HLZKV VRJP KF TIRTB 1234");
+    cipher_bruteforce("TRVJRI TZGYVIJ RIV HLZKV VRJP KF TIRTB ");
    
 }
