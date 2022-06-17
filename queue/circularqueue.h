@@ -1,6 +1,5 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-
 class circularqueue{
     const static int N = 10;
     int A[N];
